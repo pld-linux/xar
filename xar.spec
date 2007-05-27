@@ -1,4 +1,5 @@
 Summary:	Easily extensible archive format
+Summary(pl.UTF-8):	Łatwo rozszerzalny format archiwów
 Name:		xar
 Version:	1.5
 Release:	1
@@ -27,13 +28,29 @@ archive, the ability to store checksums for individual files in both
 compressed and uncompressed form, and the ability to query the table
 of content's rich meta-data.
 
+%description -l pl.UTF-8
+Celem projektu XAR jest zapewnienie łatwo rozszerzalnego formatu
+archiwów. Główne decyzje projektowe obejmują: łatwo rozszerzalną
+tabelę zawartości w formacie XML do swobodnego dostępu do
+zarchiwizowanych plików, zapisywanie informacji o zawartości archiwum
+na początku archiwum w celu umożliwienia wydajnej obsługi archiwów
+strumieniowych, możliwość obsługi plików o dowolnie dużych rozmiarach,
+możliwość wyboru niezależnych kodowań dla poszczególnych plików w
+archiwum, możliwość zapisywania sum kontrolnych dla poszczególnych
+plików w zarówno skompresowanej jak i nieskompresowanej postaci,
+możliwość odpytywania metadanych tabeli zawartości.
+
 %package devel
-Summary:	Header files and develpment documentation for xar
+Summary:	Header files for xar
+Summary(pl.UTF-8):	Pliki nagłówkowe xara
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
-Header files and develpment documentation for xar.
+Header files for xar.
+
+%description devel -l pl.UTF-8
+Pliki nagłówkowe xara.
 
 %prep
 %setup -q
@@ -51,15 +68,15 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
 %doc TODO
 %attr(755,root,root) %{_bindir}/*
-%{_mandir}/man1/*
 %attr(755,root,root) %{_libdir}/*.so.*
+%{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
