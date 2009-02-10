@@ -1,12 +1,12 @@
 Summary:	Easily extensible archive format
 Summary(pl.UTF-8):	Łatwo rozszerzalny format archiwów
 Name:		xar
-Version:	1.5
+Version:	1.5.2
 Release:	1
 License:	BSD
 Group:		Applications/Archiving
 Source0:	http://xar.googlecode.com/files/%{name}-%{version}.tar.gz
-# Source0-md5:	8057051827329458c111a4880e868afc
+# Source0-md5:	8eabb055d3387b8edc30ecfb08d2e80d
 URL:		http://code.google.com/p/xar/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
@@ -65,6 +65,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/{*.a,*.la}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -74,11 +76,12 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc TODO
-%attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/*.so.*
-%{_mandir}/man1/*
+%attr(755,root,root) %{_bindir}/xar
+%attr(755,root,root) %{_libdir}/libxar.so.*
+%{_mandir}/man1/xar.1*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so
-%{_includedir}/xar
+%attr(755,root,root) %{_libdir}/libxar.so
+%dir %{_includedir}/xar
+%{_includedir}/xar/xar.h
