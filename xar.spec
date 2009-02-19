@@ -41,16 +41,33 @@ plików w zarówno skompresowanej jak i nieskompresowanej postaci,
 możliwość odpytywania metadanych tabeli zawartości.
 
 %package devel
-Summary:	Header files for xar
-Summary(pl.UTF-8):	Pliki nagłówkowe xara
+Summary:	Header files for xar library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki xara
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	acl-devel
+Requires:	bzip2-devel
+Requires:	libxml2-devel
+Requires:	openssl-devel
+Requires:	zlib-devel
 
 %description devel
-Header files for xar.
+Header files for xar library.
 
 %description devel -l pl.UTF-8
-Pliki nagłówkowe xara.
+Pliki nagłówkowe biblioteki xara.
+
+%package static
+Summary:	Static xar library
+Summary(pl.UTF-8):	Statyczna biblioteka xara
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Static xar library.
+
+%description static -l pl.UTF-8
+Statyczna biblioteka xara.
 
 %prep
 %setup -q
@@ -65,8 +82,6 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/{*.a,*.la}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -75,13 +90,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc TODO
+%doc LICENSE TODO
 %attr(755,root,root) %{_bindir}/xar
-%attr(755,root,root) %{_libdir}/libxar.so.*
+%attr(755,root,root) %{_libdir}/libxar.so.1
 %{_mandir}/man1/xar.1*
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libxar.so
+%{_libdir}/libxar.la
 %dir %{_includedir}/xar
 %{_includedir}/xar/xar.h
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libxar.a
