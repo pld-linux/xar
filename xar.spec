@@ -2,7 +2,7 @@ Summary:	Easily extensible archive format
 Summary(pl.UTF-8):	Łatwo rozszerzalny format archiwów
 Name:		xar
 Version:	1.5.2
-Release:	3
+Release:	4
 License:	BSD
 Group:		Applications/Archiving
 Source0:	http://xar.googlecode.com/files/%{name}-%{version}.tar.gz
