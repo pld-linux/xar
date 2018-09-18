@@ -1,0 +1,37 @@
+diff -urN xar-1.6.1.org/configure.ac xar-1.6.1/configure.ac
+--- xar-1.6.1.org/configure.ac	2012-09-17 13:30:07.000000000 +0200
++++ xar-1.6.1/configure.ac	2018-09-18 10:59:36.075915320 +0200
+@@ -329,7 +329,7 @@
+ dnl 
+ have_libcrypto="1"
+ AC_CHECK_HEADERS([openssl/evp.h], , [have_libcrypto="0"])
+-AC_CHECK_LIB([crypto], [OpenSSL_add_all_ciphers], , [have_libcrypto="0"])
++AC_CHECK_LIB([crypto], [EVP_DigestInit_ex], , [have_libcrypto="0"])
+ if test "x${have_libcrypto}" = "x0" ; then
+   AC_MSG_ERROR([Cannot build without libcrypto (OpenSSL)])
+ fi
+diff -urN xar-1.6.1.org/lib/ext2.c xar-1.6.1/lib/ext2.c
+--- xar-1.6.1.org/lib/ext2.c	2012-09-17 13:30:07.000000000 +0200
++++ xar-1.6.1/lib/ext2.c	2018-09-18 10:59:52.203069978 +0200
+@@ -140,8 +140,10 @@
+ 	if(! (flags & ~EXT2_NOCOMPR_FL) )
+ 		x_addprop(f, "NoCompBlock");
+ #endif
++#ifdef EXT2_ECOMPR_FL
+ 	if(! (flags & ~EXT2_ECOMPR_FL) )
+ 		x_addprop(f, "CompError");
++#endif
+ 	if(! (flags & ~EXT2_BTREE_FL) )
+ 		x_addprop(f, "BTree");
+ 	if(! (flags & ~EXT2_INDEX_FL) )
+@@ -229,8 +231,10 @@
+ 	if( e2prop_get(f, "NoCompBlock", (char **)&tmp) == 0 )
+ 		flags |= EXT2_NOCOMPR_FL ;
+ #endif
++#ifdef EXT2_ECOMPR_FL
+ 	if( e2prop_get(f, "CompError", (char **)&tmp) == 0 )
+ 		flags |= EXT2_ECOMPR_FL ;
++#endif
+ 	if( e2prop_get(f, "BTree", (char **)&tmp) == 0 )
+ 		flags |= EXT2_BTREE_FL ;
+ 	if( e2prop_get(f, "HashIndexed", (char **)&tmp) == 0 )

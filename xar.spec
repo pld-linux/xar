@@ -1,13 +1,15 @@
 Summary:	Easily extensible archive format
 Summary(pl.UTF-8):	Łatwo rozszerzalny format archiwów
 Name:		xar
-Version:	1.5.2
-Release:	5
+Version:	1.6.1
+Release:	1
 License:	BSD
 Group:		Applications/Archiving
-Source0:	http://xar.googlecode.com/files/%{name}-%{version}.tar.gz
-# Source0-md5:	8eabb055d3387b8edc30ecfb08d2e80d
-URL:		http://code.google.com/p/xar/
+Source0:	https://github.com/downloads/mackyle/xar/xar-1.6.1.tar.gz
+# Source0-md5:	a624535d6a1e8fdf420b36a6b334047b
+Patch0:		build.patch
+URL:		https://mackyle.github.io/xar/
+BuildRequires:	autoconf
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
 BuildRequires:	bzip2-devel
@@ -71,8 +73,11 @@ Statyczna biblioteka xara.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+%{__aclocal}
+%{__autoconf}
 %configure
 %{__make}
 
@@ -90,7 +95,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc LICENSE TODO
+%doc LICENSE NEWS xar_README.txt ChangeLog
 %attr(755,root,root) %{_bindir}/xar
 %attr(755,root,root) %{_libdir}/libxar.so.1
 %{_mandir}/man1/xar.1*
