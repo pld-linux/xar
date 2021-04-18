@@ -5,13 +5,13 @@ Version:	1.6.1
 Release:	1
 License:	BSD
 Group:		Applications/Archiving
-Source0:	https://github.com/downloads/mackyle/xar/xar-1.6.1.tar.gz
+Source0:	https://github.com/downloads/mackyle/xar/%{name}-%{version}.tar.gz
 # Source0-md5:	a624535d6a1e8fdf420b36a6b334047b
 Patch0:		build.patch
 URL:		https://mackyle.github.io/xar/
-BuildRequires:	autoconf
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
+BuildRequires:	autoconf
 BuildRequires:	bzip2-devel
 BuildRequires:	e2fsprogs-devel
 BuildRequires:	libxml2-devel
