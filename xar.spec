@@ -12,6 +12,7 @@ URL:		https://mackyle.github.io/xar/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
 BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	e2fsprogs-devel
 BuildRequires:	libxml2-devel
@@ -76,6 +77,7 @@ Statyczna biblioteka xara.
 %patch0 -p1
 
 %build
+cp -f /usr/share/automake/config.sub .
 %{__aclocal}
 %{__autoconf}
 %configure
