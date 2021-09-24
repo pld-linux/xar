@@ -2,7 +2,7 @@ Summary:	Easily extensible archive format
 Summary(pl.UTF-8):	Łatwo rozszerzalny format archiwów
 Name:		xar
 Version:	1.6.1
-Release:	1
+Release:	2
 License:	BSD
 Group:		Applications/Archiving
 Source0:	https://github.com/downloads/mackyle/xar/%{name}-%{version}.tar.gz
