@@ -11,13 +11,15 @@ Patch0:		build.patch
 URL:		https://mackyle.github.io/xar/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	e2fsprogs-devel
-BuildRequires:	libxml2-devel
+BuildRequires:	libxml2-devel >= 1:2.6.11
 BuildRequires:	openssl-devel
+BuildRequires:	xz-devel
 BuildRequires:	zlib-devel
+Requires:	libxml2 >= 1:2.6.11
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -50,8 +52,9 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	acl-devel
 Requires:	bzip2-devel
-Requires:	libxml2-devel
+Requires:	libxml2-devel >= 1:2.6.11
 Requires:	openssl-devel
+Requires:	xz-devel
 Requires:	zlib-devel
 
 %description devel
