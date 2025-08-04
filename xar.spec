@@ -8,6 +8,7 @@ Group:		Applications/Archiving
 Source0:	https://github.com/downloads/mackyle/xar/%{name}-%{version}.tar.gz
 # Source0-md5:	a624535d6a1e8fdf420b36a6b334047b
 Patch0:		build.patch
+Patch1:		includes.patch
 URL:		https://mackyle.github.io/xar/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
@@ -78,6 +79,7 @@ Statyczna biblioteka xara.
 %prep
 %setup -q
 %patch -P0 -p1
+%patch -P1 -p1
 
 %build
 cp -f /usr/share/automake/config.sub .
